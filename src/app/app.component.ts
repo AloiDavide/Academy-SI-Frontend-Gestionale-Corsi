@@ -6,11 +6,12 @@ import {FooterComponent} from "./footer/footer.component";
 import {ContactsComponent} from "./contacts/contacts.component";
 import {CoursesComponent} from "./courses/courses.component";
 import {AccountInterfaceComponent} from "./account-interface/account-interface.component";
+import {CategoriesComponent} from "./categories/categories.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-    imports: [RouterOutlet, HeaderComponent, FooterComponent, NavbarComponent, ContactsComponent, CoursesComponent, AccountInterfaceComponent],
+    imports: [RouterOutlet, HeaderComponent, FooterComponent, NavbarComponent, ContactsComponent, CoursesComponent, AccountInterfaceComponent, CategoriesComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
