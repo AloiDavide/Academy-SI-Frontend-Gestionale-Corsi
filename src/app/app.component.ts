@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {HeaderComponent} from "./header/header.component";
 import {NavbarComponent} from "./navbar/navbar.component";
@@ -8,13 +8,19 @@ import {CoursesComponent} from "./courses/courses.component";
 import {AccountInterfaceComponent} from "./account-interface/account-interface.component";
 import {CategoriesComponent} from "./categories/categories.component";
 
+
 @Component({
-  selector: 'app-root',
-  standalone: true,
-    imports: [RouterOutlet, HeaderComponent, FooterComponent, NavbarComponent, ContactsComponent, CoursesComponent, AccountInterfaceComponent, CategoriesComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+      selector: 'app-root',
+      standalone: true,
+      imports: [RouterOutlet, HeaderComponent, FooterComponent, NavbarComponent, ContactsComponent, CoursesComponent, AccountInterfaceComponent, CategoriesComponent],
+      templateUrl: './app.component.html',
+      styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'gestionale_corsi';
+    loginEmail: string = "";
+
+
+    onUserEvent($email: string) {
+        this.loginEmail = $email;
+    }
 }

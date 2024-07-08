@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './course-card.component.css'
 })
 export class CourseCardComponent {
-
+    name: string = "Titolo corso";
+    shortDescription: string = "Placeholder descrizione breve corso";
+    duration:number = 5;
 }

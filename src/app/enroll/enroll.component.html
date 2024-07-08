@@ -9,7 +9,7 @@
                     <form>
                         <div class="form-group mb-3">
                             <label for="category">Select Category</label>
-                            <select class="form-control" id="category">
+                            <select class="form-control" id="category" (input)="onCategoryChange($event)">
                                 <option value="frontend">Frontend</option>
                                 <option value="backend">Backend</option>
                                 <option value="fullstack">Full Stack</option>
@@ -19,11 +19,11 @@
                         <div class="form-group mb-4">
                             <label for="course">Select Course</label>
                             <select class="form-control" id="course">
-                                <option value="">Select a course</option>
+                                <option *ngFor="let course of this.selectedList" [value]="course">{{course}}</option>
                             </select>
                         </div>
                         <div class="d-grid col-12">
-                            <button type="submit" class="btn btn-warning btn-block">Enroll</button>
+                            <button type="submit" (click)="submit()" class="btn btn-warning text-light btn-block">Enroll</button>
                         </div>
                     </form>
                 </div>

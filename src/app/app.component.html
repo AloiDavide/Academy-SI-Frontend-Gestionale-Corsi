@@ -1,8 +1,8 @@
-<app-navbar></app-navbar>
+<app-navbar [loginEmail]="loginEmail"></app-navbar>
 <app-header></app-header>
 <app-courses></app-courses>
 <app-categories></app-categories>
-<app-account-interface></app-account-interface>
+<app-account-interface (userEvent)="onUserEvent($event)"></app-account-interface>
 <app-footer></app-footer>
 
 
