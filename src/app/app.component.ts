@@ -7,6 +7,9 @@ import {ContactsComponent} from "./contacts/contacts.component";
 import {CoursesComponent} from "./courses/courses.component";
 import {AccountInterfaceComponent} from "./account-interface/account-interface.component";
 import {CategoriesComponent} from "./categories/categories.component";
+import {interval} from "rxjs";
+import {UserService} from "./service/user/user.service";
+import {UserDto} from "../model/userDto";
 
 
 @Component({
@@ -14,14 +17,30 @@ import {CategoriesComponent} from "./categories/categories.component";
       standalone: true,
       imports: [RouterOutlet, HeaderComponent, FooterComponent, NavbarComponent, ContactsComponent, CoursesComponent, AccountInterfaceComponent, CategoriesComponent],
       templateUrl: './app.component.html',
-      styleUrl: './app.component.css'
+      styleUrl: './app.component.css',
+      providers:[UserService]
 })
 export class AppComponent {
     loginEmail: string = "";
 
+    //Dependency injection del service
+    constructor(private userService: UserService) {
+        this.userService.getAll().subscribe(result => {
+            console.log(result);
+        });
+    }
 
     onUserEvent($email: string) {
         this.loginEmail = $email;
-        console.log("loginEmail", this.loginEmail);
     }
+
+
+
+    // ngOnInit(): void{
+    //     interval(500).subscribe(count => {
+    //         console.log(count);
+    //     });
+    // }
+
+
 }

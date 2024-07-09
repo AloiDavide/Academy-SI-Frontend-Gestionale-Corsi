@@ -7,7 +7,7 @@
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end d-flex m-auto" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-end mx-auto" id="navbarSupportedContent">
             <ul class=" navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="#">HOME</a>
@@ -26,23 +26,22 @@
                        aria-expanded="false">
                         USER
                     </a>
-                    <div class="dropdown-menu" *ngIf="loginEmail.length>0; then yesLogin else noLogin"></div>
-                    <ng-template #yesLogin>
-                        <ul class="dropdown-menu">
-                            <img src="profile_placeholder.jpg" class="img-fluid" alt="profile pic">
+
+                    <!--Dropdown menu condizionale sulla presenza di un utente loggato (al momento solo email non nulla)-->
+                    <ul class="dropdown-menu">
+                        <div *ngIf="loginEmail.length>0; then yesLogin else noLogin"></div>
+                        <ng-template #yesLogin>
+                            <img src="profile_placeholder.png" class="img-fluid" alt="profile pic">
                             <li><a class="dropdown-item" href="#">{{loginEmail}}</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">My Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Account Settings</a></li>
                             <li><a class="dropdown-item" href="#">Sign out</a></li>
-                        </ul>
-                    </ng-template>
-                    <ng-template #noLogin>
-                        <ul class="dropdown-menu">
+                        </ng-template>
+                        <ng-template #noLogin>
                             <li><a class="dropdown-item" href="#">Register</a></li>
                             <li><a class="dropdown-item" href="#">Log In</a></li>
-                        </ul>
-                    </ng-template>
-
+                        </ng-template>
+                    </ul>
                 <li>
                     <form class="" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
