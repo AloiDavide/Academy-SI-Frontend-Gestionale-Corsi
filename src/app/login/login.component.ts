@@ -2,16 +2,19 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {LoginRequest} from "../../model/loginRequest";
 import {FormsModule} from "@angular/forms";
 import {FormTitleComponent} from "../form-title/form-title.component";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, FormTitleComponent],
+  imports: [FormsModule, FormTitleComponent, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-    correctPassword:string = "123456";
+    correctPassword:string = "1";
+    error:boolean = false;
+
     buttonDisabled: boolean = false;
 
 
@@ -27,6 +30,7 @@ export class LoginComponent {
         }
         else{
             console.log("password errata");
+            this.error = true;
         }
 
     }

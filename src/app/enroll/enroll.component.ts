@@ -18,7 +18,7 @@ export class EnrollComponent {
         cybersecurity: ['Cybersecurity Basics', 'Ethical Hacking', 'Network Security']
     };
 
-    selectedList: string[] = [];
+    selectedList: string[] = this.courses['frontend'];
 
 
     onCategoryChange($event: Event){

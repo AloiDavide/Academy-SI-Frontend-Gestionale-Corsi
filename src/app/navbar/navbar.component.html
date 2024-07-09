@@ -10,29 +10,39 @@
         <div class="collapse navbar-collapse justify-content-end d-flex m-auto" id="navbarSupportedContent">
             <ul class=" navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#top">HOME</a>
+                    <a class="nav-link" href="#">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#the-band">COURSES</a>
+                    <a class="nav-link " href="#">COURSES</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#the-band">CATEGORIES</a>
+                    <a class="nav-link " href="#">CATEGORIES</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#tour">CONTACTS</a>
+                    <a class="nav-link " href="#">CONTACTS</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
                         USER
                     </a>
-                    <ul class="dropdown-menu">
-                        <img src="profile_placeholder.png" class="img-fluid" alt="profile pic">
-                        <li><a class="dropdown-item" href="#">{{loginEmail}}</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
-                    </ul>
+                    <div class="dropdown-menu" *ngIf="loginEmail.length>0; then yesLogin else noLogin"></div>
+                    <ng-template #yesLogin>
+                        <ul class="dropdown-menu">
+                            <img src="profile_placeholder.jpg" class="img-fluid" alt="profile pic">
+                            <li><a class="dropdown-item" href="#">{{loginEmail}}</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </ng-template>
+                    <ng-template #noLogin>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Register</a></li>
+                            <li><a class="dropdown-item" href="#">Log In</a></li>
+                        </ul>
+                    </ng-template>
+
                 <li>
                     <form class="" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

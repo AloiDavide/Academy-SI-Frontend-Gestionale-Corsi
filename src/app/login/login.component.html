@@ -7,15 +7,18 @@
                 </div>
                 <div class="card-body p-4">
                     <form (ngSubmit) = "submit()">
-                        <div class="form-floating mb-3">
+                        <div class="form-floating">
                             <input [(ngModel)]="this.loginRequest.email" type="email" name="email" class="form-control" id="login_email" placeholder="Enter email">
                             <label for="login_email">Email address</label>
                         </div>
-                        <div class="form-floating mb-4">
+                        <div class="form-floating mt-4">
                             <input [(ngModel)]="this.loginRequest.password" type="password" name="password" class="form-control" id="login_password" placeholder="Password">
                             <label for="login_password">Password</label>
                         </div>
-                        <div class="d-grid col-12">
+                        <div class="text-center mt-1" *ngIf="error">
+                            <p href="#" class="text-danger">I dati inseriti non sono validi.</p>
+                        </div>
+                        <div class="d-grid col-12 mt-4">
                             <button (click)="submit()" type="submit" class="btn btn-primary btn-block">Login</button>
                         </div>
                     </form>

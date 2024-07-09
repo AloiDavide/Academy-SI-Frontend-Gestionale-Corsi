@@ -22,5 +22,6 @@ export class AppComponent {
 
     onUserEvent($email: string) {
         this.loginEmail = $email;
+        console.log("loginEmail", this.loginEmail);
     }
 }
