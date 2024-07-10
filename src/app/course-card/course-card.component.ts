@@ -15,5 +15,7 @@ export class CourseCardComponent {
     shortDescription: string = "Placeholder descrizione breve corso";
     @Input()
     duration:number = 0;
+    @Input()
+    imageName: string ="course_placeholder.jpg";
 
 }

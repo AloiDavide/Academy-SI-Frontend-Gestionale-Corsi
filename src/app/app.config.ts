@@ -15,4 +15,6 @@ export const appConfig: ApplicationConfig = {
         UserService,
         CourseService
         ]
+
+
 };

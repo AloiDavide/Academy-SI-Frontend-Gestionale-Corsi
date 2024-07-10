@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {CourseDto} from "../../model/courseDto";
+import {CourseService} from "../service/course/course.service";
+import {CategoryDto} from "../../model/categoryDto";
 
 @Component({
     selector: 'app-enroll',
@@ -9,29 +12,44 @@ import {CommonModule} from '@angular/common';
     styleUrl: './enroll.component.css'
 })
 export class EnrollComponent {
+    categories: CategoryDto[] = [];
+
     selectedCategory: string = "";
 
-    courses:{ [key: string]: string[] } = {
-        frontend: ['HTML & CSS', 'JavaScript', 'Angular', 'React'],
-        backend: ['Node.js', 'Express', 'Java', 'Python'],
-        fullstack: ['Full Stack Web Development', 'MERN Stack', 'MEAN Stack'],
-        cybersecurity: ['Cybersecurity Basics', 'Ethical Hacking', 'Network Security']
-    };
+    courseTitles:{ [key: string]: string[] } = {};
 
-    selectedList: string[] = this.courses['frontend'];
+    selectedList: string[] = [];
+
+
+
+    constructor(private courseService: CourseService) {
+        this.courseService.getAllCategories().subscribe(result => {
+
+            this.categories = result;
+
+            result.forEach(category => {
+                this.courseService.getByCategory(category.id).subscribe(result => {
+                    this.courseTitles[category.categoryName.toLowerCase()] = result.map(course => course.name);
+                })
+            })
+        })
+
+
+    }
 
 
     onCategoryChange($event: Event){
         const selectElement:HTMLSelectElement = $event.target as HTMLSelectElement;
         const category:string = selectElement.value;
+        console.log(category);
         this.selectedCategory = category;
-        this.selectedList = this.courses[category];
+        this.selectedList = this.courseTitles[category];
 
-        console.log(this.selectedCategory);
-        console.log(this.selectedList);
+
     }
 
     submit() {
-        console.log("Add a model for this form");
+        //TODO Add a model for this form
+        console.log("Enroll submission");
     }
 }

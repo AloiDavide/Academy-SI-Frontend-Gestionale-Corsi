@@ -9,7 +9,7 @@
                     <form>
                         <div class="form-group mb-3">
                             <label for="register_first_name">First name</label>
-                            <input [(ngModel)]="this.registerRequest.firstName" type="text" name="fistName" class="form-control" id="register_first_name" placeholder="Enter email">
+                            <input [(ngModel)]="this.registerRequest.name" type="text" name="name" class="form-control" id="register_first_name" placeholder="Enter first name">
                         </div>
                         <div class="form-group mb-3">
                             <label for="register_last_name">Last name</label>
@@ -19,9 +19,14 @@
                             <label for="register_email">Email address</label>
                             <input [(ngModel)]="this.registerRequest.email" type="email" name="email" class="form-control" id="register_email" placeholder="Enter email">
                         </div>
+                        <div class="form-group mb-3">
+                            <label for="register_email">Password</label>
+                            <input [(ngModel)]="this.registerRequest.password" type="password" name="password" class="form-control" id="register_password" placeholder="Enter password">
+                        </div>
                         <div class="form-group mb-4">
-                            <label for="register_password">Password</label>
-                            <input [(ngModel)]="this.registerRequest.password" type="password" name="password" class="form-control" id="register_password" placeholder="Password">
+                            <label class="form-check-label" for="register_role">Teacher</label>
+                            <input type="checkbox" name="isTeacher" class="form-check-input" id="register_role" (change)="onRoleChange($event)">
+
                         </div>
                         <div class="d-grid col-12">
                             <button type="submit" (click)="submit()" class="btn btn-success btn-block">Sign Up</button>

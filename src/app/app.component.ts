@@ -23,24 +23,14 @@ import {UserDto} from "../model/userDto";
 export class AppComponent {
     loginEmail: string = "";
 
-    //Dependency injection del service
-    constructor(private userService: UserService) {
-        this.userService.getAll().subscribe(result => {
-            console.log(result);
-        });
-    }
-
+    //Dependency injection del service che stampa tutti gli utenti nella console
+    // constructor(private userService: UserService) {
+    //     this.userService.getAll().subscribe(result => {
+    //         console.log(result);
+    //     });
+    // }
     onUserEvent($email: string) {
         this.loginEmail = $email;
     }
-
-
-
-    // ngOnInit(): void{
-    //     interval(500).subscribe(count => {
-    //         console.log(count);
-    //     });
-    // }
-
 
 }

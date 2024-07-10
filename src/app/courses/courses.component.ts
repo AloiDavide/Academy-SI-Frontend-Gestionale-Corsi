@@ -4,6 +4,7 @@ import {CourseDto} from "../../model/courseDto";
 import {CommonModule} from "@angular/common";
 import {MyServiceService} from "../service/my-service.service";
 import {CourseService} from "../service/course/course.service";
+import {interval} from "rxjs";
 
 @Component({
     selector: 'app-courses',
@@ -14,52 +15,35 @@ import {CourseService} from "../service/course/course.service";
     providers: [CourseService]
 })
 export class CoursesComponent {
-    categories: string[] = ['Frontend', 'Backend', 'Fullstack', 'Cybersecurity'];
+    categories: string[] = [];
 
     currentCategory: string = "frontend";
 
-    //oggetti da ricevere con delle chiamate get al backend
 
-    courses: { [key: string]: CourseDto[] } = {
-        'frontend': [
-            {title: 'Javascript', shortDescription: '', longDescription: '', duration: 5},
-            {title: 'Angular', shortDescription: '', longDescription: '', duration: 7},
-        ],
-        'backend': [
-            {title: 'Spring', shortDescription: '', longDescription: '', duration: 0},
-            {title: 'SQL', shortDescription: '', longDescription: '', duration: 3},
-        ],
-        'fullstack': [
-            {title: 'Java Web Development', shortDescription: '', longDescription: '', duration: 8},
-            {title: 'Python Web Development', shortDescription: '', longDescription: '', duration: 0},
-        ],
-        'cybersecurity': [
-            {title: 'Network security', shortDescription: '', longDescription: '', duration: 0},
-            {title: 'Ethical hacking', shortDescription: '', longDescription: '', duration: 5},
-        ]
+    courses: CourseDto[] = [];
 
-    };
+    coursesByCategory: { [key: string]: CourseDto[] } = {}
 
-    constructor(private storage: MyServiceService) {
+    constructor(private courseService: CourseService) {
+        this.courseService.getAllCategories().subscribe(result => {
+            console.log("Categories: \n"+result);
+            this.categories = result.map(category => category.categoryName);
+
+            result.forEach(category => {
+                this.courseService.getByCategory(category.id).subscribe(result => {
+                    this.coursesByCategory[category.categoryName.toLowerCase()] = result;
+                })
+            })
+        })
+
+        this.courseService.getAll().subscribe(result => {
+            console.log(result);
+            this.courses = result;
+        })
     }
 
     changeCategory(category: string) {
         this.currentCategory = category;
     }
-
-
-//         frontend: ['HTML & CSS', 'JavaScript', 'Angular', 'React'],
-//         backend: ['Node.js', 'SQL', 'Spring', 'JavaEE'],
-//         fullstack: ['Full Stack Web Development', 'MERN Stack', 'MEAN Stack'],
-//         cybersecurity: ['Cybersecurity Basics', 'Ethical Hacking', 'Network Security']
-
-
-    // constructor() {
-    // this.courses.push(new CourseData("","","",0, ""));
-    // this.courses.push(new CourseData("Angular","","",7, "frontend"));
-    // this.courses.push(new CourseData("Spring","","",6, "backend"));
-    // this.courses.push(new CourseData("Ethical Hacking","","",8, "cybersecurity"));
-    // console.log(this.courses);
-    // }
 
 }

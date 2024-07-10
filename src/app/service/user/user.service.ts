@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {UserDto} from "../../../model/userDto";
 import {catchError, Observable, retry, throwError} from "rxjs";
+import {RegisterRequest} from "../../../model/registerRequest";
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +15,14 @@ export class UserService {
 
     getAll(): Observable<UserDto[]> {
         return this.http.get<UserDto[]>('http://localhost:8080/api/user/get/all').pipe(
+            retry(3),
+            catchError(this.handleError)
+        );
+    }
+
+    register(registerRequest: RegisterRequest) {
+
+        return this.http.post<any>('http://localhost:8080/api/user/reg', registerRequest).pipe(
             retry(3),
             catchError(this.handleError)
         );

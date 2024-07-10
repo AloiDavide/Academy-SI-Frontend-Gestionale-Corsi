@@ -1,13 +1,13 @@
 <div class="container border-top">
     <h5 *ngIf="isLogged" class="text-center">Logged in as {{loginEmail}}</h5>
     <div class="row d-flex justify-content-center">
-        <div class="col-md-4" *ngIf="!isLogged">
+        <div class="col-lg-5 col-md-10 col-12" *ngIf="!isLogged">
             <app-login (loginEvent)="onLoginEvent($event)"></app-login>
         </div>
-        <div class="col-md-4" *ngIf="!isLogged">
+        <div class="col-lg-5 col-md-10 col-12" *ngIf="!isLogged">
             <app-register (registerEvent)="onRegisterEvent($event)"></app-register>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-10 col-12" *ngIf="isLogged">
             <app-enroll></app-enroll>
         </div>
     </div>

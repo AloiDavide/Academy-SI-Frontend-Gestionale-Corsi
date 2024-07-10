@@ -19,9 +19,9 @@
         <div class="row d-flex justify-content-center align-content-center mt-5">
 
             <div class="col-12 col-lg-6 col-xl-4 mb-4 d-flex align-content-center justify-content-center"
-                 *ngFor="let course of courses[currentCategory.toLowerCase()]">
-                <app-course-card [title]="course.title" [shortDescription]="course.shortDescription"
-                                 [duration]="course.duration"></app-course-card>
+                 *ngFor="let course of coursesByCategory[currentCategory.toLowerCase()]">
+                <app-course-card [title]="course.name" [shortDescription]="course.shortDescription"
+                                 [duration]="course.duration" [imageName]="currentCategory.toLowerCase()+'.jpg'"></app-course-card>
             </div>
 
         </div>

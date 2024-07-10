@@ -5,13 +5,15 @@ import {EnrollComponent} from "../enroll/enroll.component";
 import {LoginRequest} from "../../model/loginRequest";
 import {RegisterRequest} from "../../model/registerRequest";
 import {CommonModule} from "@angular/common";
+import {UserService} from "../service/user/user.service";
 
 @Component({
-  selector: 'app-account-interface',
-  standalone: true,
-  imports: [RegisterComponent, LoginComponent, EnrollComponent, CommonModule],
-  templateUrl: './account-interface.component.html',
-  styleUrl: './account-interface.component.css'
+    selector: 'app-account-interface',
+    standalone: true,
+    imports: [RegisterComponent, LoginComponent, EnrollComponent, CommonModule],
+    templateUrl: './account-interface.component.html',
+    styleUrl: './account-interface.component.css',
+    providers: [UserService]
 })
 export class AccountInterfaceComponent {
     loginEmail: string = "";
@@ -20,19 +22,28 @@ export class AccountInterfaceComponent {
     @Output()
     userEvent: EventEmitter<string> = new EventEmitter<string>();
 
+
+    constructor(private userService: UserService) {}
+
     onLoginEvent($login: LoginRequest) {
-        this.isLogged = true;
-        this.loginEmail = $login.email;
-        this.showLoggedUser($login.email);
+        this.doLogin($login.email);
     }
 
     onRegisterEvent($register: RegisterRequest) {
-        this.isLogged = true;
-        this.loginEmail = $register.email;
-        this.showLoggedUser($register.email);
+        this.userService.register($register).subscribe();
+        console.log($register);
+        //TODO check for a positive response from the api before proceeding
+        this.doLogin($register.email);
     }
 
-    showLoggedUser(email: string){
+
+    doLogin(email:string){
+        this.loginEmail = email;
+        this.isLogged = true;
         this.userEvent.emit(email);
     }
+
+    //Password$1
+
+
 }

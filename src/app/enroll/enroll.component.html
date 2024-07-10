@@ -10,10 +10,7 @@
                         <div class="form-group mb-3">
                             <label for="category">Select Category</label>
                             <select class="form-control" id="category" (input)="onCategoryChange($event)">
-                                <option value="frontend">Frontend</option>
-                                <option value="backend">Backend</option>
-                                <option value="fullstack">Full Stack</option>
-                                <option value="cybersecurity">Cybersecurity</option>
+                                <option *ngFor="let category of this.categories" [value]="category.categoryName.toLowerCase()">{{category.categoryName}}</option>
                             </select>
                         </div>
                         <div class="form-group mb-4">
