@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import {AccountInterfaceComponent} from "./account-interface/account-interface.component";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {EnrollComponent} from "./enroll/enroll.component";

@@ -1,6 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgIf} from "@angular/common";
 import {RouterOutlet, RouterLink, RouterLinkActive} from "@angular/router";
+import {UserDto} from "../../model/userDto";
 
 @Component({
     selector: 'app-navbar',
@@ -16,6 +17,14 @@ import {RouterOutlet, RouterLink, RouterLinkActive} from "@angular/router";
 })
 export class NavbarComponent {
     @Input()
-    loginEmail: string = "";
+    logged:boolean = false;
+    @Input()
+    loggedUser!: UserDto;
 
+    @Output()
+    userSignOutEvent: EventEmitter<any> = new EventEmitter<any>();
+
+    onSignOut() {
+        this.userSignOutEvent.emit();
+    }
 }

@@ -1,25 +1,25 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {CourseDto} from "../../model/courseDto";
 import {CourseService} from "../service/course/course.service";
 import {CategoryDto} from "../../model/categoryDto";
+import {EnrollRequest} from "../../model/enrollRequest";
+import {FormsModule, NgForm} from "@angular/forms";
 
 @Component({
     selector: 'app-enroll',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, FormsModule],
     templateUrl: './enroll.component.html',
     styleUrl: './enroll.component.css'
 })
 export class EnrollComponent {
     categories: CategoryDto[] = [];
-
     selectedCategory: string = "";
-
     courseTitles:{ [key: string]: string[] } = {};
-
     selectedList: string[] = [];
+    selectedCourse:string=""
 
+    @Output() enrollEvent = new EventEmitter<EnrollRequest>();
 
 
     constructor(private courseService: CourseService) {
@@ -38,7 +38,8 @@ export class EnrollComponent {
     }
 
 
-    onCategoryChange($event: Event){
+    onCategoryChange($event: Event, enrollForm: NgForm){
+        enrollForm.reset()
         const selectElement:HTMLSelectElement = $event.target as HTMLSelectElement;
         const category:string = selectElement.value;
         console.log(category);
@@ -48,7 +49,7 @@ export class EnrollComponent {
 
     }
 
-    submit() {
+    onSubmit(enrollForm: NgForm) {
         //TODO Add a model for this form
         console.log("Enroll submission");
     }

@@ -1,10 +1,10 @@
 export class UserDto {
-    private name: string;
-	private lastname: string;
-	private mail: string;
-	private password: string;
-	private roles: number[];
-	private courses: number[];
+    name: string;
+    lastname: string;
+	mail: string;
+	password: string;
+	roles: number[];
+	courses: number[];
 
     constructor(name: string, lastname: string, mail: string, password: string, roles: number[], courses: number[]) {
         this.name = name;
