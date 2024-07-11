@@ -1,8 +1,23 @@
 <app-navbar [loginEmail]="loginEmail"></app-navbar>
-<app-header></app-header>
-<app-courses></app-courses>
-<app-categories></app-categories>
-<app-account-interface (userEvent)="onUserEvent($event)"></app-account-interface>
+
+<!--<div *ngIf="isHomePage">-->
+<!--    <app-home></app-home>-->
+<!--</div>-->
+<!--<div *ngIf="isLoginPage">-->
+<!--    <app-login (loginEvent)="onLoginEvent($event)"></app-login>-->
+<!--</div>-->
+<!--<div *ngIf="isRegisterPage">-->
+<!--    <app-register (registerEvent)="onRegisterEvent($event)"></app-register>-->
+<!--</div>-->
+<!--<div *ngIf="isEnrollPage">-->
+<!--    <app-enroll (enrollEvent)="onEnrollEvent($event)"></app-enroll>-->
+<!--</div>-->
+
+
+<!--Alternativamente, se non serve particolare customizzazione con gli if basta inserire <router-outlet></router-outlet>-->
+<router-outlet></router-outlet>
+
+
 <app-footer></app-footer>
 
 

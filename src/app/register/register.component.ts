@@ -1,7 +1,6 @@
 import {Component, DoCheck, EventEmitter, OnInit, Output} from '@angular/core';
 import {RegisterRequest} from "../../model/registerRequest";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {UserService} from "../service/user/user.service";
+import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
     selector: 'app-register',
@@ -13,7 +12,7 @@ import {UserService} from "../service/user/user.service";
     styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-    registerRequest: RegisterRequest = new RegisterRequest("","","","", [1]);
+    registerRequest: RegisterRequest = new RegisterRequest("","","","",[1]);
 
     @Output()
     registerEvent:EventEmitter<RegisterRequest> = new EventEmitter<RegisterRequest>();
@@ -21,8 +20,24 @@ export class RegisterComponent {
 
     }
 
-    submit() {
-        this.registerEvent.emit(this.registerRequest);
+
+    onSubmit(registerForm:NgForm) {
+        this.registerRequest.name = registerForm.value.name;
+        this.registerRequest.lastName = registerForm.value.lastName;
+        this.registerRequest.email = registerForm.value.email;
+        this.registerRequest.password = registerForm.value.password;
+
+
+        console.log(registerForm);
+
+        if (registerForm.valid) {
+            console.log(this.registerRequest);
+            this.registerEvent.emit(this.registerRequest);
+
+        }
+
+        registerForm.reset()
+
     }
 
     onRoleChange($event: Event) {

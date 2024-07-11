@@ -1,13 +1,13 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Output, ViewChild} from '@angular/core';
 import {LoginRequest} from "../../model/loginRequest";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, NgForm} from "@angular/forms";
 import {FormTitleComponent} from "../form-title/form-title.component";
-import {CommonModule} from "@angular/common";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, FormTitleComponent, CommonModule],
+  imports: [FormTitleComponent, FormsModule, NgIf],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -18,20 +18,30 @@ export class LoginComponent {
     buttonDisabled: boolean = false;
 
 
-    loginRequest: LoginRequest = new LoginRequest("","");
+
+
     @Output()
     loginEvent: EventEmitter<LoginRequest> = new EventEmitter<LoginRequest>();
 
-    submit() {
-        if (this.loginRequest.password == this.correctPassword){
-            console.log(this.loginRequest);
-            //Emettiamo un login event quando viene premuto submit e passiamo l'oggetto con i dati
-            this.loginEvent.emit(this.loginRequest);
+    //Let's make the NgForm static and accessible everywhere in this component
+
+    onSubmit(loginForm:NgForm) {
+        const email = loginForm.value.email;
+        const password = loginForm.value.password;
+
+        const loginRequest: LoginRequest = new LoginRequest(email,password);
+
+        console.log(loginForm);
+        console.log(email);
+        console.log(password);
+
+        if (loginForm.valid) {
+            console.log(loginRequest);
+            this.loginEvent.emit(loginRequest);
+
         }
-        else{
-            console.log("password errata");
-            this.error = true;
-        }
+
+        loginForm.reset()
 
     }
 

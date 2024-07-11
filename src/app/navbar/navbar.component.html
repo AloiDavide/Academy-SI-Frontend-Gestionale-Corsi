@@ -32,14 +32,14 @@
                         <div *ngIf="loginEmail.length>0; then yesLogin else noLogin"></div>
                         <ng-template #yesLogin>
                             <img src="profile_placeholder.png" class="img-fluid" alt="profile pic">
-                            <li><a class="dropdown-item" href="#">{{loginEmail}}</a></li>
+                            <li>{{loginEmail}}</li>
+                            <li><a class="dropdown-item" routerLink="/enroll" routerLinkActive="active">Enroll</a></li>
                             <li><a class="dropdown-item" href="#">My Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Account Settings</a></li>
                             <li><a class="dropdown-item" href="#">Sign out</a></li>
                         </ng-template>
                         <ng-template #noLogin>
-                            <li><a class="dropdown-item" href="#">Register</a></li>
-                            <li><a class="dropdown-item" href="#">Log In</a></li>
+                            <li><a  class="dropdown-item" routerLink="/login" routerLinkActive="active">Log In</a></li>
+                            <li><a class="dropdown-item" routerLink="/register" routerLinkActive="active">Register</a></li>
                         </ng-template>
                     </ul>
                 <li>
