@@ -1,8 +1,8 @@
 <!--navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-                <img src="public/logo.png" alt="logo" class="d-inline-block align-text-top logo">
+        <a class="navbar-brand">
+            <img src="logo.png" alt="logo" class="d-inline-block align-text-top logo">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,14 +28,14 @@
                         USER
                     </a>
                     <ul class="dropdown-menu justify-content-center text-center">
-                        <div *ngIf="!logged; then yesLogin else noLogin"></div>
+                        <div *ngIf="logged; then yesLogin else noLogin"></div>
                         <ng-template #yesLogin>
+                            <li>{{loggedUser?.name}} {{loggedUser?.lastname}}</li>
+                            <li><span class="small-text">{{loggedUser?.mail}}</span></li>
                             <img src="profile_placeholder.png" class="img-fluid" alt="profile pic">
-                            <li>{{loggedUser.name}} {{loggedUser.lastname}}</li>
-                            <li>{{loggedUser.mail}}</li>
                             <li><a class="dropdown-item" routerLink="/enroll" routerLinkActive="active">Enroll</a></li>
                             <li><a class="dropdown-item" href="#">My Profile</a></li>
-                            <li><a class="dropdown-item" role="button" (click)="onSignOut()">Sign out</a></li>
+                            <li><a class="dropdown-item" href="/" role="button" (click)="onSignOut()">Sign out</a></li>
                         </ng-template>
                         <ng-template #noLogin>
                             <li><a class="dropdown-item" routerLink="/login" routerLinkActive="active">Log In</a></li>

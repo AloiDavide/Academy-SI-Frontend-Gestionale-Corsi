@@ -9,9 +9,8 @@ import {HomeComponent} from "./home/home.component";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {EnrollComponent} from "./enroll/enroll.component";
-import {LoginRequest} from "../model/loginRequest";
-import {RegisterRequest} from "../model/registerRequest";
 import {EnrollRequest} from "../model/enrollRequest";
+import {LocalStorageService} from "./service/local-storage/local.storage.service";
 
 @Component({
       selector: 'app-root',
@@ -28,20 +27,16 @@ import {EnrollRequest} from "../model/enrollRequest";
       ],
       templateUrl: './app.component.html',
       styleUrl: './app.component.css',
-      providers:[UserService]
+      providers:[UserService, LocalStorageService]
 })
 export class AppComponent {
-    logged:boolean=false;
-    loggedUser!: UserDto;
-
     isHomePage:boolean = false;
     isLoginPage:boolean = false;
     isRegisterPage:boolean = false;
     isEnrollPage:boolean = false;
-    constructor(public router: Router, private userService:UserService) {
+    constructor(public router: Router, private userService:UserService, public localStorageService:LocalStorageService) {
+        //somewhat superfluous handling of routing, the app isn't complex enough for this yet
         this.router.events.subscribe(event => {
-
-            //somewhat superfluous handling of routing, the app isn't complex enough for this yet
             if (event instanceof NavigationEnd) {
                 this.isHomePage = this.router.url === '/';
                 this.isLoginPage = this.router.url === '/login';
@@ -51,22 +46,24 @@ export class AppComponent {
     });
 }
 
-    //after a login or sign up, fetches the user by email
 
-    onUserAccessEvent($email: string) {
-        this.userService.getUserByMail($email).subscribe({
+
+
+    onUserAccessEvent(email: string) {
+        //after a login, fetch the user by email and store their data
+        this.userService.getUserByMail(email).subscribe({
             next: (result)=>{
-                this.loggedUser = result;
+                this.localStorageService.store("loggedUser", JSON.stringify(result));
+                location.reload();
             },
             error:(error) =>{
                 console.error('There was an error during the registration process', error);
-                    // Display error to the user
                     alert('Login failed. We couldn\'t find your account.');
                     this.onSignOut();
             }
 
         });
-        this.logged = true;
+
     }
 
 
@@ -76,6 +73,6 @@ export class AppComponent {
 
 
     onSignOut() {
-        this.logged=false;
+        this.localStorageService.clear();
     }
 }

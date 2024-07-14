@@ -50,7 +50,7 @@ export class EnrollComponent {
     }
 
     onSubmit(enrollForm: NgForm) {
-        //TODO Add a model for this form
+        //TODO implement the service on the frontend side
         console.log("Enroll submission");
     }
 }

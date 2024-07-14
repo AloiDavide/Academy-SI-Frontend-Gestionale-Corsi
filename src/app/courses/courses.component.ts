@@ -2,9 +2,7 @@ import {Component} from '@angular/core';
 import {CourseCardComponent} from "../course-card/course-card.component";
 import {CourseDto} from "../../model/courseDto";
 import {CommonModule} from "@angular/common";
-import {MyServiceService} from "../service/my-service.service";
 import {CourseService} from "../service/course/course.service";
-import {interval} from "rxjs";
 
 @Component({
     selector: 'app-courses',

@@ -42,7 +42,6 @@ export class UserService {
             retry(this.RETRY_COUNT)
         )
 
-        //TODO make a specialized class to receive the login response with the token
     }
 
 

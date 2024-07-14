@@ -1,4 +1,4 @@
-<app-navbar [loggedUser]="loggedUser" [logged]="logged" (userSignOutEvent)="onSignOut()"></app-navbar>
+<app-navbar (userSignOutEvent)="onSignOut()"></app-navbar>
 
 
 <div *ngIf="isHomePage">
@@ -8,7 +8,7 @@
     <app-login (userAccessEvent)="onUserAccessEvent($event)"></app-login>
 </div>
 <div *ngIf="isRegisterPage">
-    <app-register (userAccessEvent)="onUserAccessEvent($event)"></app-register>
+    <app-register></app-register>
 </div>
 <div *ngIf="isEnrollPage">
     <app-enroll (enrollEvent)="onEnrollEvent($event)"></app-enroll>

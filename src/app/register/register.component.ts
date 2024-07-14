@@ -1,6 +1,6 @@
-import {Component, DoCheck, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter} from '@angular/core';
 import {RegisterRequest} from "../../model/registerRequest";
-import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserService} from "../service/user/user.service";
 
@@ -16,8 +16,7 @@ import {UserService} from "../service/user/user.service";
 export class RegisterComponent {
     registerRequest: RegisterRequest = new RegisterRequest("", "", "", "", [1]);
 
-    @Output()
-    userAccessEvent: EventEmitter<string> = new EventEmitter<string>();
+
 
     constructor(private userService: UserService, public router: Router) {
 
@@ -35,11 +34,8 @@ export class RegisterComponent {
                     // On successful call
                     console.log('User registered successfully', result);
 
-                    // Emit the event so that app-component can access the data of the user who just registered.
-                    this.userAccessEvent.emit(this.registerRequest.mail);
-
                     // Navigate back to home.
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/login']);
                 },
                 error: (error) => {
                     console.error('There was an error during the registration process', error);
@@ -52,7 +48,7 @@ export class RegisterComponent {
         registerForm.reset()
     }
 
-    //
+
     onRoleChange($event: Event) {
         let rolesArray = this.registerRequest.roles;
         if (rolesArray.includes(2)) {
