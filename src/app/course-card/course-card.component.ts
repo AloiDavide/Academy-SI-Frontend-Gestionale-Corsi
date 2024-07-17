@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {CourseDto} from "../../model/courseDto";
 
 
 @Component({
@@ -10,11 +11,8 @@ import {Component, Input} from '@angular/core';
 })
 export class CourseCardComponent {
     @Input()
-    title: string = "Titolo corso";
-    @Input()
-    shortDescription: string = "Placeholder descrizione breve corso";
-    @Input()
-    duration:number = 0;
+    course!: CourseDto;
+
     @Input()
     imageName: string ="course_placeholder.jpg";
 

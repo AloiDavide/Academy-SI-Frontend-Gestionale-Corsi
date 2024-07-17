@@ -35,7 +35,7 @@ export class AppComponent {
     isRegisterPage:boolean = false;
     isEnrollPage:boolean = false;
     constructor(public router: Router, private userService:UserService, public localStorageService:LocalStorageService) {
-        //somewhat superfluous handling of routing, the app isn't complex enough for this yet
+        //somewhat superfluous handling of routing, the app isn't complex enough yet for this level of customization to be required
         this.router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
                 this.isHomePage = this.router.url === '/';

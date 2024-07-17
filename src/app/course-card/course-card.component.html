@@ -1,11 +1,11 @@
 <div class="card text-center w-75 mx-auto">
     <img [src]="imageName" class="card-img-top mx-auto img-fluid" alt="course">
     <div class="card-body">
-        <h5 class="card-title">{{title}}</h5>
-        <p class="card-text">{{shortDescription}}</p>
+        <h5 class="card-title">{{course.name}}</h5>
+        <p class="card-text">{{course.shortDescription}}</p>
         <p class="card-text">
             Durata:<br>
-            {{ duration }}
+            {{ course.duration }}
         </p>
         <a href="#" class="btn btn-dark">Info</a>
     </div>

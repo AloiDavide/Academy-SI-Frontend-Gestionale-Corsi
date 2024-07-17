@@ -12,11 +12,10 @@ import {LocalStorageService} from "../service/local-storage/local.storage.servic
     imports: [FormsModule, NgIf],
     templateUrl: './login.component.html',
     styleUrl: './login.component.css',
-    providers: [LocalStorageService],
+    providers: [LocalStorageService, UserService]
 })
 export class LoginComponent {
     loginRequest: LoginRequest = new LoginRequest("", "");
-    jwtToken: string = "";
 
     @Output()
     userAccessEvent: EventEmitter<string> = new EventEmitter<string>();

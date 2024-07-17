@@ -5,6 +5,8 @@ import {routes} from './app.routes';
 import {provideHttpClient} from "@angular/common/http";
 import {UserService} from "./service/user/user.service";
 import {CourseService} from "./service/course/course.service";
+import {LocalStorageService} from "./service/local-storage/local.storage.service";
+import {CategoryService} from "./service/category/category.service";
 
 
 export const appConfig: ApplicationConfig = {
@@ -13,7 +15,9 @@ export const appConfig: ApplicationConfig = {
         provideRouter(routes),
         provideHttpClient(),
         UserService,
-        CourseService
+        CourseService,
+        CategoryService,
+        LocalStorageService
         ]
 
 
