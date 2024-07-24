@@ -3,13 +3,11 @@ import {Router, NavigationEnd, RouterOutlet} from '@angular/router';
 import {NavbarComponent} from "./navbar/navbar.component";
 import {FooterComponent} from "./footer/footer.component";
 import {UserService} from "./service/user/user.service";
-import {UserDto} from "../model/userDto";
 import {NgIf} from "@angular/common";
 import {HomeComponent} from "./home/home.component";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {EnrollComponent} from "./enroll/enroll.component";
-import {EnrollRequest} from "../model/enrollRequest";
 import {LocalStorageService} from "./service/local-storage/local.storage.service";
 
 @Component({
@@ -65,12 +63,6 @@ export class AppComponent {
         });
 
     }
-
-
-    onEnrollEvent($event: EnrollRequest) {
-
-    }
-
 
     onSignOut() {
         this.localStorageService.clear();
